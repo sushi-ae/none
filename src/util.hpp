@@ -4,9 +4,17 @@
 #include <xcb/xcb.h>
 #include <xcb/xproto.h>
 
-namespace Util {
-    void throwerr(const std::string err);
+enum annoy_t {
+    error,
+    warn
+};
+
+namespace util {
+    void annoy(annoy_t mode,const std::string message);
+    void spawn(const char *com);
     void set_focus(xcb_connection_t *c,xcb_window_t win);
+    void move_window(xcb_connection_t *c,xcb_window_t win,unsigned int x,unsigned int y);
+    int check_for_wm(xcb_connection_t *c,xcb_window_t root);
 }
 
 class WM {
@@ -21,6 +29,6 @@ public:
     void close_conn(xcb_connection_t *c);
 };
 
-namespace Events {
+namespace events {
     void handle_map_request(xcb_connection_t *c,xcb_generic_event_t *e);
 }

@@ -1,9 +1,9 @@
 CC=g++
 SRC=src/none.cpp src/util.cpp
-LDFLAGS=-lxcb
+LDFLAGS=-lxcb -lxcb-util
 WARN=-Wall -Wpedantic -Wextra
 
 default: none
 
 none: $(SRC)
-	$(CC) $(SRC) $(LDFLAGS) $(WARN) -o build/none
+	$(CC) $(SRC) $(LDFLAGS) $(WARN) -o none
