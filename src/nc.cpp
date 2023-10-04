@@ -1,6 +1,6 @@
-#include <cstdlib>
 #include <iostream>
 #include <string.h>
+#include <xcb/xcb.h>
 
 #include "util.hpp"
 
@@ -34,10 +34,17 @@ int main(int argc,char *argv[]){
             std::exit(1);
         }
 
-        unsigned int newX = atoi(argv[2]);
-        unsigned int newY = atoi(argv[3]);
+        int a = atoi(argv[2]);
+        int b = atoi(argv[3]);
 
-        util::move_window(nc.dpy,strtoul(argv[4],NULL,16),newX,newY);
+        xcb_window_t win = strtoul(argv[4],NULL,16);
+        xcb_get_geometry_reply_t *geo = xcb_get_geometry_reply(nc.dpy,xcb_get_geometry(nc.dpy,win),NULL);
+
+        int x = geo->x + a;
+        int y = geo->y + b;
+
+        util::move_window(nc.dpy,strtoul(argv[4],NULL,16),x,y);
+        free(geo);
     }
 
     if (strncmp(argv[1],"fc",2)==0){

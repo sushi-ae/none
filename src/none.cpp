@@ -17,7 +17,7 @@ int main(void){
 
     uint32_t vals[4];
 
-    vals[0] = XCB_EVENT_MASK_SUBSTRUCTURE_NOTIFY | XCB_EVENT_MASK_SUBSTRUCTURE_REDIRECT;
+    vals[0] = XCB_EVENT_MASK_SUBSTRUCTURE_NOTIFY;
     xcb_change_window_attributes_checked(none.dpy,none.root,XCB_CW_EVENT_MASK,vals);
 
     util::spawn("/bin/sxhkd");

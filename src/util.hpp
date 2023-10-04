@@ -13,7 +13,7 @@ namespace util {
     void annoy(annoy_t mode,const std::string message);
     void spawn(const char *com);
     void set_focus(xcb_connection_t *c,xcb_window_t win);
-    void move_window(xcb_connection_t *c,xcb_window_t win,unsigned int x,unsigned int y);
+    void move_window(xcb_connection_t *c,xcb_window_t win,int x,int y);
     int check_for_wm(xcb_connection_t *c,xcb_window_t root);
 }
 

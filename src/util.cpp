@@ -43,13 +43,13 @@ void util::set_focus(xcb_connection_t *c, xcb_window_t win){
     else if(!win) util::annoy(error,"invalid window id");
 }
 
-void util::move_window(xcb_connection_t *c,xcb_window_t win,unsigned int x,unsigned int y){
+void util::move_window(xcb_connection_t *c,xcb_window_t win,int x,int y){
     if (win){
         uint32_t vals[2];
         vals[0] = x;
         vals[1] = y;
         xcb_configure_window(c,win,XCB_CONFIG_WINDOW_X | XCB_CONFIG_WINDOW_Y,vals);
-        xcb_flush(c);
+        xcb_aux_sync(c);
     }
     else if(!win) util::annoy(error,"invalid window id");
 }
